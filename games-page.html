@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Games</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        .font-oswald { font-family: 'Oswald', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-white text-black">
+
+    <!-- NAVBAR -->
+    <nav class="bg-black text-white px-6 py-4 flex justify-between items-center">
+        <h1 class="font-oswald text-lg tracking-widest">SQUARE ENIX</h1>
+        <div class="space-x-6 text-sm uppercase">
+            <a href="index.html" class="hover:text-gray-300">Home</a>
+            <a href="games-page.html" class="text-[#6db5c6]">Top Games</a>
+            <a href="news.html" class="hover:text-gray-300">News</a>
+            <a href="store.html" class="hover:text-gray-300">Store</a>
+        </div>
+    </nav>
+
+    <!-- BANNER -->
+    <div class="relative h-[40vh] md:h-[60vh]">
+        <img src="https://gh.cdn.sewest.net/assets/ident//games/f1a396d8/GamesIndex_Carousel_Landscape-v0go3myt4.jpg?quality=65&auto=format&fit=crop" 
+             class="w-full h-full object-cover" alt="Banner">
+        
+        <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+            <h1 class="text-white font-oswald text-4xl md:text-6xl uppercase tracking-[0.2em]">
+                GAMES
+            </h1>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="max-w-7xl mx-auto px-6 py-12">
+
+        <!-- FILTER -->
+        <div class="flex flex-col md:flex-row md:items-center gap-4 mb-10">
+            <div class="flex flex-wrap gap-2">
+                <button class="border border-gray-300 px-4 py-2 text-xs font-bold uppercase">
+                    Platform <i class="fas fa-chevron-down ml-2"></i>
+                </button>
+                <button class="border border-gray-300 px-4 py-2 text-xs font-bold uppercase">
+                    Tahun <i class="fas fa-chevron-down ml-2"></i>
+                </button>
+            </div>
+
+            <div class="relative flex-grow">
+                <input type="text" placeholder="CARI GAME..." 
+                       class="w-full border border-gray-300 p-3 pl-10 text-sm focus:ring-1 focus:ring-black outline-none">
+                <i class="fas fa-search absolute left-3 top-4 text-gray-400"></i>
+            </div>
+        </div>
+
+        <!-- GRID GAME -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+
+            <!-- CARD 1 -->
+            <a href="index.html" class="group cursor-pointer">
+                <div class="overflow-hidden mb-4 border border-gray-100 shadow-sm">
+                    <img src="img/Final Fantasy VII Remake Video Games Art Wallpaper (2).jpg?auto=format&fit=crop"
+                         class="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <h3 class="font-bold text-lg uppercase tracking-tight">Final Fantasy VII Remake</h3>
+                <p class="text-xs text-gray-500 mt-1 uppercase">MMORPG • PS5, PC, Xbox, Nintendo Switch</p>
+            </a>
+
+            <!-- CARD 2 -->
+            <div class="group cursor-pointer">
+                <div class="overflow-hidden mb-4 border border-gray-100 shadow-sm">
+                    <img src="https://gh.cdn.sewest.net/assets/ident//games/23f405fa/gamesIndex_LandscapeArtwork-zp5qslbgl.jpg?quality=65&auto=format&fit=crop"
+                         class="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <h3 class="font-bold text-lg uppercase tracking-tight">Dragon Quest Smash/Grow</h3>
+                <p class="text-xs text-gray-500 mt-1 uppercase">RPG • Nintendo Switch</p>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="group cursor-pointer">
+                <div class="overflow-hidden mb-4 border border-gray-100 shadow-sm">
+                    <img src="https://gh.cdn.sewest.net/assets/ident//games/c860f88d/GamesIndex_Carousel_Landscape-tyygkw79u.jpg?quality=65&auto=format&fit=crop"
+                         class="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <h3 class="font-bold text-lg uppercase tracking-tight">Final Fantasy VII Rebirth</h3>
+                <p class="text-xs text-gray-500 mt-1 uppercase">Adventure • PS5, PC</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-center py-12 px-6 border-t border-gray-800 text-gray-500 text-[10px] md:text-xs">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <p>&copy; 2026 SQUARE ENIX CO., LTD. HAK CIPTA DILINDUNGI.</p>
+            <p>FINAL FANTASY, SQUARE ENIX dan logo SQUARE ENIX adalah merek dagang terdaftar.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

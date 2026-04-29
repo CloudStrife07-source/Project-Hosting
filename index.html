@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FINAL FANTASY VII REMAKE | SQUARE ENIX</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Cinzel:wght@500;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #000;
+        }
+        .font-oswald {
+            font-family: 'Oswald', sans-serif;
+        }
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+        
+        /* Subtle text shadow for better readability */
+        .text-shadow {
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+        /* Smooth Transition for Pages */
+        .page-content { display: none; opacity: 0; transition: opacity 0.4s ease-in-out; }
+        .active-page { display: block; opacity: 1; 
+        }
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        #mobile-menu.open { transform: translateX(0); }
+
+        /* Dropdown Animation */
+        .dropdown-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .dropdown-content.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="text-white antialiased">
+
+    <!-- Top Navigation Bar (Square Enix) -->
+    <nav class="bg-[#111] text-gray-300 px-4 md:px-8 py-3 flex justify-between items-center text-xs md:text-sm font-semibold tracking-wide border-b border-[#222] sticky top-0 z-50">
+        <div class="flex items-center gap-2">
+            <!-- Logo Text -->
+            <span class="font-bold text-base md:text-lg tracking-[0.2em] text-white">SQUARE ENIX</span>
+        </div>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-8">
+            <a href="games-page.html" class="hover:text-white transition-colors">TOP GAMES</a>
+            <a href="news.html" class="hover:text-white transition-colors">NEWS</a>
+            <a href="store.html" class="hover:text-white transition-colors">STORE</a>
+            <a href="#" class="hover:text-white transition-colors">SUPPORT</a>
+            <div class="flex items-center gap-6 ml-4 border-l border-gray-700 pl-6">
+                <a href="#" class="hover:text-white text-lg transition-colors"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#" class="hover:text-white text-lg transition-colors"><i class="far fa-user"></i></a>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Icon -->
+        <div class="md:hidden flex items-center">
+            <button class="text-white text-xl"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+        <!-- Mobile Menu Toggle -->
+        <div class="lg:hidden flex items-center gap-4">
+            <a href="#" class="text-white text-lg"><i class="fas fa-shopping-cart"></i></a>
+            <button onclick="toggleMenu()" class="text-white text-2xl focus:outline-none">
+                <i id="menu-icon" class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Overlay Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-[#0a0a0a] z-[90] flex flex-col pt-24 px-8 lg:hidden">
+        <div class="flex flex-col gap-8 text-xl font-oswald tracking-widest text-center">
+            <button onclick="window.location.href='games-page.html';" class="border-b border-white/10 pb-">GAMES</button>
+            <button onclick="window.location.href='news.html';" class="border-b border-white/10 pb-4">NEWS</button>
+            <button onclick="window.location.href='store.html';" class="border-b border-white/10 pb-4">STORE</button>
+            <button onclick="toggleMenu()" class="border-b border-white/10 pb-4">SUPPORT</button>
+            <button onclick="toggleMenu()" class="text-gray-500 text-sm mt-4">TUTUP</button>
+        </div>
+    </div>
+
+    <!-- Secondary Navigation Bar (Game Specific) -->
+   <div id="home-page" class="page-content active-page">
+        <!-- Game Nav Bar with New Dropdown Feature -->
+        <div class="bg-gradient-to-r from-[#0a161f] to-[#1a3344] h-14 md:h-16 flex justify-between items-center sticky top-[60px] md:top-[64px] z-40 border-b border-black/50">
+            <div class="flex items-center h-full pl-4 md:pl-8 relative">
+                <!-- Clickable Dropdown Trigger -->
+                <div class="flex items-center cursor-pointer group h-full" id="ffvii-dropdown-trigger" onclick="toggleDropdown(event)">
+                    <div class="font-cinzel text-lg md:text-2xl font-bold tracking-widest text-white">
+                        FINAL FANTASY <span class="text-sm md:text-xl">VII</span>
+                    </div>
+                    <i class="fas fa-caret-down ml-3 text-[#6db5c6] transition-transform duration-300" id="dropdown-arrow"></i>
+                </div>
+
+                <!-- Dropdown Menu (Based on image_a82eb8.jpg) -->
+                <div id="ffvii-dropdown" class="dropdown-content absolute top-full left-0 w-64 md:w-80 bg-[#121212] border border-white/10 shadow-2xl z-50">
+                    <ul class="flex flex-col text-xs md:text-sm font-oswald tracking-widest uppercase">
+                        <li><a href="#" class="block px-6 py-4 border-b border-white/5 hover:bg-[#1a1a1a] hover:text-[#6db5c6] transition">Final Fantasy VII Rebirth</a></li>
+                        <li class="relative group/sub">
+                            <a href="#" class="flex justify-between items-center px-6 py-4 border-b border-white/5 hover:bg-[#1a1a1a] hover:text-[#6db5c6] transition">
+                                Final Fantasy VII Remake
+                                <i class="fas fa-caret-right text-[10px]"></i>
+                            </a>
+                        </li>
+                        <li><a href="#" class="block px-6 py-4 border-b border-white/5 hover:bg-[#1a1a1a] hover:text-[#6db5c6] transition">Crisis Core -Final Fantasy VII- Reunion</a></li>
+                        <li><a href="#" class="flex justify-between items-center px-6 py-4 hover:bg-[#1a1a1a] hover:text-[#6db5c6] transition">
+                            Final Fantasy VII Ever Crisis
+                            <i class="fas fa-external-link-alt text-[10px]"></i>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+
+        <!-- Buy Now Button -->
+        <button class="bg-[#6db5c6] hover:bg-[#85cbdc] text-black font-bold text-xs md:text-sm tracking-widest px-6 md:px-12 h-full transition duration-300">
+            BUY NOW
+        </button>
+    </div>
+
+    <!-- MAIN WRAPPER -->
+    <main>
+         <!-- NEW SECTION: PLAY THE DEMO -->
+        <section class="relative w-full bg-[#030608] py-16 md:py-24 border-b border-gray-900">
+            <!-- Background Atmospheric Image -->
+            <div class="absolute inset-0 opacity-20 pointer-events-none">
+                <img src="img/ffviir-zoom-seventh-heaven-header.jpg?auto=format&fit=crop" class="w-full h-full object-cover" alt="Background Texture">
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+                    
+                    <!-- Left: Text Content -->
+                    <div class="w-full md:w-1/2 order-2 md:order-1">
+                        <h2 class="font-oswald text-2xl md:text-3xl font-medium text-white mb-6 tracking-wide uppercase">
+                            PLAY THE DEMO ON XBOX & NINTENDO SWITCH™ 2!
+                        </h2>
+                        
+                        <div class="space-y-6 text-gray-200 text-sm md:text-[15px] font-normal leading-relaxed">
+                            <p>In this demo, players can enjoy the entire first chapter — the mako reactor bombing mission.</p>
+                            
+                            <p>It is possible to carry over save data from this demo to the main game. In addition, if save data has been created for the demo, the bonus items “Revival Earrings” and “Survival Set” can be claimed in the full game.</p>
+                            
+                            <div class="italic text-xs md:text-sm space-y-4 text-gray-400">
+                                <p>*It is not possible to carry over save data from the demo if save data has already been created for the full game, but the Revival Earrings and Survival Set can still be obtained in the main game via other means.</p>
+                                <p>*The Revival Earrings and Survival Set can be claimed by selecting the “Gift Box” option accessible via the main menu in the full game.</p>
+                                <p>*For the Xbox version only, it is not possible to unlock achievements in the demo itself, but the achievement “Onetime Gig” will be unlocked in the main game if save data where the whole of the demo content has been completed is carried over.</p>
+                            </div>
+                        </div>
+
+                        <!-- Download Button -->
+                        <div class="mt-10">
+                            <button class="bg-[#0f4471] hover:bg-[#165a96] text-white font-oswald text-sm md:text-base font-medium tracking-[0.15em] px-10 py-3 border border-blue-400/30 transition duration-300 shadow-lg uppercase">
+                                Download Demo
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Media Block -->
+                    <div class="w-full md:w-1/2 order-1 md:order-2">
+                        <div class="relative group border-[1.5px] border-[#6db5c6] overflow-hidden aspect-video glow-border">
+                            <!-- Sephiroth Placeholder Image -->
+                            <img src="img/ffviir-zoom-limit.jpg?auto=format&fit=crop" 
+                                 alt="Demo Gameplay" 
+                                 class="w-full h-full object-cover">
+                            
+                            <!-- Diamond Play Button Overlay -->
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 border-[1.5px] border-[#6db5c6] rotate-45 flex items-center justify-center bg-black/60 group-hover:bg-[#6db5c6]/30 transition duration-300">
+                                <i class="fas fa-play text-[#6db5c6] group-hover:text-white -rotate-45 text-sm ml-1 transition duration-300"></i>
+                            </div>
+                            <!-- Game Logo Overlay (Bottom Right) -->
+                            <div class="absolute bottom-4 right-4 w-24 md:w-32 opacity-90">
+                                <div class="text-white font-cinzel text-[10px] leading-tight text-right">
+                                    FINAL FANTASY VII <br> <span class="text-[8px] text-gray-400">REMAKE INTERGRADE</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: What is FFVII Remake -->
+        <section class="relative w-full min-h-[80vh] md:min-h-[800px] flex items-center border-b border-gray-900">
+            <!-- Background Image -->
+            <img src="https://static0.thegamerimages.com/wordpress/wp-content/uploads/2019/07/FF7-Midgar-Feature.png?q=50&fit=crop&w=1600&h=900&dpr=1.5&fit=crop" 
+                 alt="Midgar Background" 
+                 class="absolute inset-0 w-full h-full object-cover object-center opacity-60">
+            
+            <!-- Gradient Overlay (Dark on Left) -->
+            <div class="absolute inset-0 bg-gradient-to-r from-[#030608] via-[#030608]/90 to-transparent w-full md:w-3/4"></div>
+            <div class="absolute inset-0 bg-black/40 md:hidden w-full"></div>
+
+            <!-- Text Content Container (Left Aligned) -->
+            <div class="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-32">
+                <div class="max-w-2xl">
+                    <h1 class="font-oswald text-3xl md:text-5xl font-medium text-white mb-8 md:mb-12 tracking-wide uppercase">
+                        What is Final Fantasy VII Remake?
+                    </h1>
+                    
+                    <div class="space-y-6 text-gray-200 text-sm md:text-base font-light leading-relaxed">
+                        <p>
+                            The world has fallen under the control of the Shinra Electric Power Company, a shadowy corporation controlling the planet's very life force as mako energy.
+                        </p>
+                        <p>
+                            In the sprawling city of Midgar, an anti-Shinra organization calling themselves Avalanche have stepped up their resistance. Cloud Strife, a former member of Shinra's elite SOLDIER unit now turned mercenary, lends his aid to the group, unaware of the epic consequences that await him.
+                        </p>
+                        <p>
+                            The story of this first, standalone game in the FINAL FANTASY VII REMAKE project covers up to the party's escape from Midgar, and goes deeper into the events occurring in Midgar than the original FINAL FANTASY VII.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3 : Story -->
+        <section class="relative w-full min-h-[90vh] md:min-h-[900px] flex items-center border-b border-gray-900">
+            <!-- Background Image (Church Ruins Placeholder) -->
+            <img src="https://cdnb.artstation.com/p/assets/images/images/032/665/971/large/jinyoung-lee-ff-7-50.jpg?1607099886&auto=format&fit=crop" 
+                 alt="Ruined Church Background" 
+                 class="absolute inset-0 w-full h-full object-cover object-center opacity-60">
+            
+            <!-- Gradient Overlay (Dark on Right to act as a panel) -->
+            <div class="absolute inset-0 bg-gradient-to-l from-[#050505]/95 via-[#050505]/80 to-transparent w-full md:w-2/3 right-0 ml-auto hidden md:block"></div>
+            <!-- Mobile Dark Overlay -->
+            <div class="absolute inset-0 bg-black/70 md:hidden w-full"></div>
+
+            <!-- Text Content Container (Right Aligned) -->
+            <div class="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24 flex justify-end">
+                <div class="max-w-3xl md:pl-16 md:bg-transparent bg-black/40 p-6 md:p-0 rounded-lg">
+                    <!-- Section Heading -->
+                    <h2 class="font-oswald text-3xl md:text-5xl font-medium text-white mb-8 md:mb-10 tracking-wide uppercase">
+                        STORY
+                    </h2>
+                    
+                    <!-- Description Paragraphs -->
+                    <div class="space-y-6 text-gray-100 text-[15px] md:text-[17px] font-semibold leading-relaxed tracking-wide text-shadow">
+                        <p>Mako—the lifeblood of the planet and the fuel that powers the city of Midgar...</p>
+                        
+                        <p>By exploiting this resource through their Mako Reactors, the Shinra Electric Power Company has all but seized control of the entire world. A ragtag group of idealists, known as Avalanche, are one of the last bastions of resistance.</p>
+                        
+                        <p>Cloud, an elite SOLDIER operative turned mercenary, takes part in an Avalanche operation to destroy Mako Reactor 1 in the city of Midgar.</p>
+                        
+                        <p>The bombing plunges the city into fiery chaos, and amidst the raging inferno, Cloud is tormented by visions of a bitter enemy long thought dead.</p>
+                        
+                        <p>After this hallucination fades, he meets a young woman selling flowers, who offers him a single yellow blossom.</p>
+                        
+                        <p>In that instant, a host of swirling shadows surround them.</p>
+                        
+                        <p>Once more begins a story that will shape the destiny of an entire world.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Media (Video/Image Thumbnails) -->
+        <section class="bg-[#050505] py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 md:px-12">
+                <!-- Media Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                    
+                    <!-- Thumbnail 1 (Left) -->
+                    <div class="relative group border-[1.5px] border-[#6db5c6] overflow-hidden cursor-pointer aspect-[16/9] shadow-[0_0_15px_rgba(109,181,198,0.15)]">
+                        <!-- Placeholder Image 1 -->
+                        <img src="https://fyre.cdn.sewest.net/ffvii-hub/67eebe6ec76ca8060d39b3ef/maxresdefault-61628407582684542.jpg?quality=85&width=768&auto=format&fit=crop" 
+                             alt="Trailer 1 Thumbnail" 
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 ease-out opacity-80 group-hover:opacity-100">
+                        
+                        <!-- Play Button Icon (Diamond Shape) -->
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 border-[1.5px] border-[#6db5c6] rotate-45 flex items-center justify-center bg-black/60 group-hover:bg-[#6db5c6]/30 transition duration-300">
+                            <i class="fas fa-play text-[#6db5c6] group-hover:text-white -rotate-45 text-sm ml-1 transition duration-300"></i>
+                        </div>
+                    </div>
+
+                    <!-- Thumbnail 2 (Right) -->
+                    <div class="relative group border-[1.5px] border-[#6db5c6] overflow-hidden cursor-pointer aspect-[16/9] shadow-[0_0_15px_rgba(109,181,198,0.15)]">
+                        <!-- Placeholder Image 2 -->
+                        <img src="https://fyre.cdn.sewest.net/ffvii-hub/67eebe86f51210ac43477c05/gallery-full-screen-02-61628428376016703.jpg?quality=85&width=768&auto=format&fit=crop" 
+                             alt="Trailer 2 Thumbnail" 
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 ease-out opacity-80 group-hover:opacity-100">
+                        
+                        <!-- Play Button Icon (Diamond Shape) -->
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 border-[1.5px] border-[#6db5c6] rotate-45 flex items-center justify-center bg-black/60 group-hover:bg-[#6db5c6]/30 transition duration-300">
+                            <i class="fas fa-play text-[#6db5c6] group-hover:text-white -rotate-45 text-sm ml-1 transition duration-300"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ALL MEDIA Button -->
+                <div class="mt-12 flex justify-center">
+                    <button class="bg-[#0f4471] hover:bg-[#165a96] text-white font-oswald text-base md:text-lg font-medium tracking-[0.15em] px-12 md:px-16 py-3 border border-blue-400/30 transition duration-300 shadow-lg">
+                        ALL MEDIA
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Simple Footer -->
+    <footer class="bg-black text-center py-8 border-t border-gray-800 text-gray-500 text-xs md:text-sm">
+        <div class="max-w-4xl mx-auto px-4">
+            <p>&copy; 2026 SQUARE ENIX CO., LTD. All Rights Reserved.</p>
+            <p class="mt-3 leading-relaxed">FINAL FANTASY, FINAL FANTASY VII REMAKE, SQUARE ENIX and the SQUARE ENIX logo are registered trademarks or trademarks of Square Enix Holdings Co., Ltd.</p>
+        </div>
+    </footer>
+
+     <script>
+        // Navigasi Halaman
+        function showPage(pageId) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active-page'));
+            document.getElementById(pageId + '-page').classList.add('active-page');
+            
+            // Tutup dropdown jika berpindah halaman
+            const dropdown = document.getElementById('ffvii-dropdown');
+            dropdown.classList.remove('show');
+            document.getElementById('dropdown-arrow').style.transform = 'rotate(0deg)';
+            
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Toggle Menu Mobile
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('open');
+            
+            if(menu.classList.contains('open')) {
+                icon.classList.replace('fa-bars', 'fa-times');
+                document.body.style.overflow = 'hidden';
+            } else {
+                icon.classList.replace('fa-times', 'fa-bars');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Toggle Dropdown (Feature from image_a82eb8.jpg)
+        function toggleDropdown(event) {
+            event.stopPropagation();
+            const dropdown = document.getElementById('ffvii-dropdown');
+            const arrow = document.getElementById('dropdown-arrow');
+            const isOpen = dropdown.classList.contains('show');
+            
+            // Toggle
+            if (isOpen) {
+                dropdown.classList.remove('show');
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                dropdown.classList.add('show');
+                arrow.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Close dropdown when clicking anywhere else
+        window.onclick = function(event) {
+            const dropdown = document.getElementById('ffvii-dropdown');
+            const arrow = document.getElementById('dropdown-arrow');
+            if (dropdown && !event.target.closest('#ffvii-dropdown-trigger')) {
+                dropdown.classList.remove('show');
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
+</body>
+</html>
